@@ -7,4 +7,8 @@ module ApplicationHelper
       "#{page_title} | #{base_title}"
     end
   end
+
+  def build_selections(prompt: "Select One", selections: {})
+    selections.reverse!.push([prompt, nil]).reverse!
+  end
 end

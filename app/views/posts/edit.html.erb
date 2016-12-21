@@ -1,26 +1,30 @@
-<h1>Edit Post</h1>
+
+<div class="row">
+  <div class="col m5 offset-m2">
+    <span class="flow-text"><h3>Edit Post</h3></span>
+  </div>
+</div>
 <%= form_for @post do |f| %>
-  <p>
-    <%= f.label :title %>
-    <br />
-    <%= f.text_field :title %>
-    <br />
-  </p>
-
-  <p>
-    <%= f.label :body %>
-    <br />
-    <%= f.text_area :body, size: "60x12" %>
-    <br />
-  </p>
-
-  <p>
-    <%= f.select :category_id, @category.collect {|x| [x.name, x.id]}, {include_blank: 'Select One'} %>
-    <br />
-  </p>
-
-  <p>
-    <%= f.submit%>
-  </p>
+  <div class="row">
+    <div class="input-field col m8 offset-m2">
+      <%= f.text_field :title  %>
+      <%= f.label :title %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col m8 offset-m2">
+      <%= f.text_area :body, class: "materialize-textarea" %>
+      <%= f.label :body %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col m8 offset-m2">
+      <%= f.select :category_id, build_selections(prompt: 'Select Category',
+                              selections: @category.collect{|x| [x.name, x.id]}),
+                                disabled: '' %>
+    </div>
+  </div>
+      <%= f.submit %>
 <% end %>
+
 <%= link_to "Go Back", post_path %>
